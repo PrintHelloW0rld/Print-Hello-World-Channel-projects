@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mind Reader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      margin: 0;
+      color: white;
+    }
+    .container {
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    input {
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #38ef7d;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #2ecc71;
+    }
+    .loading {
+      display: none;
+      font-size: 20px;
+      margin-top: 15px;
+    }
+    .dot {
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 20% {opacity: 0;}
+      50% {opacity: 1;}
+      100% {opacity: 0;}
+    }
+    .result {
+      display: none;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #f1c40f;
+      animation: pop 0.7s ease-out;
+    }
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Mind Reader 🔮</h2>
+    <input type="number" id="numberInput" placeholder="Enter any number">
+    <br><br>
+    <button onclick="readMind()">Read My Mind</button>
+    <div class="loading" id="loading"></div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const funnySteps = [
+      "🔮 Connecting to astrologers<span class='dot'>...</span>",
+      "📡 Reading your brain signals<span class='dot'>...</span>",
+      "⚡ Analyzing cosmic energy<span class='dot'>...</span>"
+    ];
+
+    function readMind() {
+      let num = document.getElementById("numberInput").value;
+      let loading = document.getElementById("loading");
+      let result = document.getElementById("result");
+
+      if(num === "") {
+        alert("Please enter a number first!");
+        return;
+      }
+
+      result.style.display = "none";
+      loading.style.display = "block";
+      let step = 0;
+
+      let interval = setInterval(() => {
+        loading.innerHTML = funnySteps[step];
+        step++;
+        if(step >= funnySteps.length) {
+          clearInterval(interval);
+          setTimeout(() => {
+            loading.style.display = "none";
+            result.innerHTML = ` You are thinking about the number <span style="color:#2ecc71">${num}</span>!`;
+            result.style.display = "block";
+          }, 1000);
+        }
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
