@@ -12,7 +12,7 @@ funny_texts = [
     "Missed call received from aliens...",
     "Going Physical with code...",
     "Hacking NASA for data...",
-    "Checking Zomato discounts...",
+    "Fucking your mother for discounts...",
     "Loading next month..."
 ]
 
@@ -54,3 +54,4 @@ result_label = tk.Label(root, text="", font=("Arial", 12))
 result_label.pack(pady=20)
 
 root.mainloop()
+
